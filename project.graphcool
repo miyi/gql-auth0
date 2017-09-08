@@ -1,0 +1,32 @@
+# project: cj7b4tiyi139u01948adf4i1e
+# version: 3
+
+type Post implements Node {
+  description: String!
+  imageUrl: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  postedBy: User! @relation(name: "UserPosts")
+  updatedAt: DateTime!
+}
+
+type User implements Node {
+  name: String!
+  emailAddress: String!
+  emailSubscription: Boolean!
+  posts: [Post!]! @relation(name: "UserPosts")
+  createdAt: DateTime!
+  id: ID! @isUnique
+  updatedAt: DateTime!
+}
+
+type File implements Node {
+  contentType: String!
+  createdAt: DateTime!
+  id: ID! @isUnique
+  name: String!
+  secret: String! @isUnique
+  size: Int!
+  updatedAt: DateTime!
+  url: String! @isUnique
+}
